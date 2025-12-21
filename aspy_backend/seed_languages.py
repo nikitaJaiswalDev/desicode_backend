@@ -8,6 +8,7 @@ from app.models.payment import Payment
 
 db = SessionLocal()
 languages = [
+    {'name': 'English', 'slug': 'english'},
     {'name': 'Assamese', 'slug': 'assamese'},
     {'name': 'Bengali', 'slug': 'bengali'},
     {'name': 'Bodo', 'slug': 'bodo'},

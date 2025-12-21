@@ -93,27 +93,9 @@ def execute_code(
         # 2. Execute Code
         execution_output = execute_python_safe(python_code)
 
-        # 3. Explain Output
-        explanation_prompt = f"""
-        Explain this code output in simple English for a beginner.
-        
-        Code:
-        {python_code}
-        
-        Output:
-        {execution_output}
-        """
-        
-        explanation_res = client.chat.completions.create(
-            model=model_name,
-            messages=[
-                {"role": "user", "content": explanation_prompt}
-            ],
-            temperature=0.7
-        )
-        explanation = explanation_res.choices[0].message.content
+        # Return only the output without explanation
+        final_output = f"> Generated Python Code:\n{python_code}\n\n> Output:\n{execution_output}"
 
-        final_output = f"> Generated Python Code:\n{python_code}\n\n> Output:\n{execution_output}\n\n> Explanation:\n{explanation}"
 
     except Exception as e:
         # Debug helper: List available models
