@@ -9,6 +9,9 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from app.models.user import User
 from app.models.subscription import Plan, PlanType, Subscription
 from app.models.invoice import Invoice
+from app.models.payment import Payment
+from app.models.code_execution import CodeExecution
+from app.models.language import Language
 
 # Now import session
 from app.db.session import SessionLocal
@@ -22,28 +25,30 @@ def seed_plans():
             "type": PlanType.FREE,
             "price": 0,
             "currency": "INR",
-            "features": '{"projects": 1, "storage": "100MB", "support": "Community"}'
+            "features": '''{
+                "ides": "1 IDE",
+                "code_runs": "20 runs/month",
+                "max_execution_time": "5 seconds",
+                "files": "Single file only",
+                "history": "No history save",
+                "support": "Community support",
+                "export": false
+            }'''
         },
         {
             "name": "Pro",
             "type": PlanType.PRO,
-            "price": 49900,
+            "price": 49900,  # ₹499 in paise
             "currency": "INR",
-            "features": '{"projects": 10, "storage": "10GB", "support": "Priority Email", "api_access": true}'
-        },
-        {
-            "name": "Team",
-            "type": PlanType.TEAM,
-            "price": 99900,
-            "currency": "INR",
-            "features": '{"projects": 50, "storage": "50GB", "support": "24/7 Phone", "team_members": 10, "api_access": true}'
-        },
-        {
-            "name": "Campus",
-            "type": PlanType.CAMPUS,
-            "price": 249900,
-            "currency": "INR",
-            "features": '{"projects": 100, "storage": "100GB", "support": "24/7 Phone", "team_members": 50, "api_access": true, "sso": true}'
+            "features": '''{
+                "ides": "1 IDE (full access)",
+                "code_runs": "Unlimited",
+                "max_execution_time": "Higher limits",
+                "files": "Save & reuse code",
+                "history": "Execution history",
+                "export": "Export output",
+                "support": "Email support"
+            }'''
         }
     ]
 

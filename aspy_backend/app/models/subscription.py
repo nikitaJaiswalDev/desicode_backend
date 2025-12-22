@@ -6,9 +6,8 @@ from sqlalchemy import JSON
 import enum
 
 class PlanType(enum.Enum):
-    STARTER = "starter"
+    FREE = "free"
     PRO = "pro"
-    ENTERPRISE = "enterprise"
 
 class SubscriptionStatus(enum.Enum):
     ACTIVE = "active"

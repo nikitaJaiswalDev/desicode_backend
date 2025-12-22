@@ -155,12 +155,12 @@ def social_login(request: SocialLoginRequest, db: Session = Depends(get_db)):
         db.commit()
         db.refresh(user)
 
-        # Assign Free STARTER Subscription
-        starter_plan = db.query(Plan).filter(Plan.type == PlanType.STARTER).first()
-        if starter_plan:
+        # Assign Free Subscription
+        free_plan = db.query(Plan).filter(Plan.type == PlanType.FREE).first()
+        if free_plan:
             new_subscription = Subscription(
                 user_id=user.id,
-                plan_id=starter_plan.id,
+                plan_id=free_plan.id,
                 status=SubscriptionStatus.ACTIVE,
                 created_at=datetime.utcnow(),
                 current_period_start=datetime.utcnow()
@@ -212,12 +212,12 @@ def register_user(request: UserCreate, db: Session = Depends(get_db)):
     db.commit()
     db.refresh(new_user)
 
-    # Assign Free STARTER Subscription
-    starter_plan = db.query(Plan).filter(Plan.type == PlanType.STARTER).first()
-    if starter_plan:
+    # Assign Free Subscription
+    free_plan = db.query(Plan).filter(Plan.type == PlanType.FREE).first()
+    if free_plan:
         new_subscription = Subscription(
             user_id=new_user.id,
-            plan_id=starter_plan.id,
+            plan_id=free_plan.id,
             status=SubscriptionStatus.ACTIVE,
             created_at=datetime.utcnow(),
             current_period_start=datetime.utcnow(),
