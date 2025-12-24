@@ -17,7 +17,7 @@ def get_user_certificates(
 ):
     """
     Get list of earned certificates based on language usage.
-    Only for PRO or ENTERPRISE users.
+    Only for PRO users (paid plans).
     """
     # 1. Check Subscription eligibility
     active_sub = db.query(Subscription).filter(
@@ -27,16 +27,14 @@ def get_user_certificates(
 
     has_access = False
     if active_sub and active_sub.plan:
-        # Assuming PRO and ENTERPRISE are logic based on name or Type
-        # Or simply if it's not STARTER (Free).
-        # Let's check plan name/type.
-        if active_sub.plan.type in [PlanType.PRO, PlanType.ENTERPRISE]:
+        # Check if user has a paid plan (PRO or any paid subscription)
+        if active_sub.plan.type == PlanType.PRO or active_sub.plan.price > 0:
              has_access = True
     
     if not has_access:
         return {
             "eligible": False,
-            "message": "Upgrade to Pro or Enterprise to unlock certificates.",
+            "message": "Upgrade to Pro to unlock certificates.",
             "certificates": []
         }
 

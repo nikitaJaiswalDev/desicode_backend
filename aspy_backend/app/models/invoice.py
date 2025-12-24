@@ -14,8 +14,8 @@ class Invoice(Base):
     currency = Column(String, default="USD")
     status = Column(String, default="pending")
     razorpay_order_id = Column(String, nullable=True)
+    invoice_url = Column(String(500), nullable=True)  # Razorpay invoice download URL
     plan_id = Column(Integer, ForeignKey("plans.id"), nullable=True)
-    invoice_url = Column(String, nullable=True)
     created_at = Column(DateTime, server_default=func.now())
     paid_at = Column(DateTime, nullable=True)
 

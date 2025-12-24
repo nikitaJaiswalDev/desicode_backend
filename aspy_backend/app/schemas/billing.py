@@ -11,6 +11,7 @@ class InvoiceResponse(BaseModel):
     status: str
     created_at: datetime
     paid_at: Optional[datetime]
+    invoice_url: Optional[str] = None  # Razorpay invoice download URL
 
     class Config:
         from_attributes = True

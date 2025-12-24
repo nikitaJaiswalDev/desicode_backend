@@ -37,6 +37,11 @@ class Subscription(Base):
     plan_id = Column(Integer, ForeignKey("plans.id"))
     status = Column(SQLEnum(SubscriptionStatus), default=SubscriptionStatus.ACTIVE)
     razorpay_subscription_id = Column(String, nullable=True, unique=True)
+    # Card details for display
+    card_last4 = Column(String(4), nullable=True)
+    card_brand = Column(String(50), nullable=True)  # visa, mastercard, amex, etc.
+    card_exp_month = Column(Integer, nullable=True)
+    card_exp_year = Column(Integer, nullable=True)
     current_period_start = Column(DateTime, nullable=True)
     current_period_end = Column(DateTime, nullable=True)
     cancel_at_period_end = Column(Boolean, default=False)

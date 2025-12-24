@@ -24,6 +24,7 @@ class Payment(Base):
     provider = Column(String, default="razorpay")
     provider_payment_id = Column(String, unique=True, nullable=True)
     provider_order_id = Column(String, nullable=True)
+    razorpay_invoice_id = Column(String, nullable=True)  # Razorpay invoice ID
     
     # Metadata like "Visa ending in 4242"
     payment_method_details = Column(JSON, nullable=True)
