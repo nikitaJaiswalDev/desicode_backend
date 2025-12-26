@@ -1,8 +1,13 @@
 # app/models/user.py - CORRECT VERSION
-from sqlalchemy import Column, Integer, String, DateTime, Boolean
+from sqlalchemy import Column, Integer, String, DateTime, Boolean, Enum as SQLEnum
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 from app.db.base import Base
+import enum
+
+class UserType(str, enum.Enum):
+    USER = "USER"
+    ADMIN = "ADMIN"
 
 class User(Base):
     __tablename__ = "users"
@@ -11,6 +16,7 @@ class User(Base):
     username = Column(String(100), unique=True, index=True, nullable=False)
     email = Column(String(200), unique=True, index=True, nullable=False)
     password = Column(String(255), nullable=False)
+    user_type = Column(SQLEnum(UserType), default=UserType.USER, nullable=False)
     razorpay_customer_id = Column(String(100), nullable=True)
     is_active = Column(Boolean, default=True)
     is_superuser = Column(Boolean, default=False)

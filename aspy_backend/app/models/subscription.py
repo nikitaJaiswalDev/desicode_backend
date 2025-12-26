@@ -6,14 +6,14 @@ from sqlalchemy import JSON
 import enum
 
 class PlanType(enum.Enum):
-    FREE = "free"
-    PRO = "pro"
+    FREE = "FREE"
+    PRO = "PRO"
 
 class SubscriptionStatus(enum.Enum):
-    ACTIVE = "active"
-    CANCELLED = "cancelled"
-    EXPIRED = "expired"
-    PAST_DUE = "past_due"
+    ACTIVE = "ACTIVE"
+    CANCELLED = "CANCELLED"
+    EXPIRED = "EXPIRED"
+    PAST_DUE = "PAST_DUE"
 
 class Plan(Base):
     __tablename__ = "plans"

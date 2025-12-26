@@ -2,7 +2,7 @@
 import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.api.v1 import auth, users, subscriptions, payments, webhooks, billing, execution, certificates, contact
+from app.api.v1 import auth, users, subscriptions, payments, webhooks, billing, execution, certificates, contact, admin
 
 app = FastAPI(
     title="ASPY Backend",
@@ -52,6 +52,7 @@ app.include_router(billing.router, prefix="/api/v1")
 app.include_router(execution.router, prefix="/api/v1")
 app.include_router(certificates.router, prefix="/api/v1")
 app.include_router(contact.router, prefix="/api/v1")
+app.include_router(admin.router, prefix="/api/v1")
 
 @app.get("/")
 def root():

@@ -177,6 +177,7 @@ def social_login(request: SocialLoginRequest, db: Session = Depends(get_db)):
             "id": user.id,
             "username": user.username,
             "email": user.email,
+            "user_type": user.user_type.value,
             "is_active": user.is_active,
             "created_at": user.created_at
         }
@@ -236,6 +237,7 @@ def register_user(request: UserCreate, db: Session = Depends(get_db)):
             "id": new_user.id,
             "username": new_user.username,
             "email": new_user.email,
+            "user_type": new_user.user_type.value,
             "is_active": new_user.is_active,
             "created_at": new_user.created_at
         }
@@ -273,6 +275,7 @@ def login_user(request: UserLogin, db: Session = Depends(get_db)):
             "id": user.id,
             "username": user.username,
             "email": user.email,
+            "user_type": user.user_type.value,
             "is_active": user.is_active,
             "created_at": user.created_at
         }
